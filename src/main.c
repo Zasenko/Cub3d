@@ -6,23 +6,30 @@
 /*   By: yalnaani <yalnaani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 11:26:40 by yalnaani          #+#    #+#             */
-/*   Updated: 2025/05/22 12:30:35 by yalnaani         ###   ########.fr       */
+/*   Updated: 2025/05/22 14:01:49 by yalnaani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/shared.h"
 #include "datastructures/datastructures.h"
 #include "mlx.h"
+#include "io/input.h"
+#include "parser/input_parser.h"
+#include "logger/logger.h"
 
 int main(int argc, char **argv)
 {
     t_vars *vars;
-
-    if(argc != 2 && *argv)
+    int error;
+    
+    error = check_input(argc, argv);
+    if(error != TRUST_ME)
     {
-        //return(1);
+        log_error(error);
+        exit(EXIT_FAILURE);
     }
     vars = new_vars();
     mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
+    hook(vars);
     mlx_loop(vars->mlx);
 }

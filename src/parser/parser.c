@@ -1,37 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shared.h                                           :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yalnaani <yalnaani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/22 11:49:19 by yalnaani          #+#    #+#             */
-/*   Updated: 2025/05/22 13:57:45 by yalnaani         ###   ########.fr       */
+/*   Created: 2025/05/22 13:38:16 by yalnaani          #+#    #+#             */
+/*   Updated: 2025/05/22 14:53:44 by yalnaani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHARED_H
-# define SHARED_H
+#include "m_parser.h"
 
-#include "../libft/libft.h"
-
-#include "conf.h"
-
-#include "parser.h"
-
-#include "raycast.h"
-
-#include "err.h"
-
-typedef struct s_vars
+int check_input(int argc, char **argv)
 {
-	void	*mlx;
-	void	*win;
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}			t_vars;
-
-#endif
+    if(argc > 0 && *argv)
+    {
+        
+    }
+    return TRUST_ME;
+}

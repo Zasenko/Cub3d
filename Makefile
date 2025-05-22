@@ -6,7 +6,7 @@
 #    By: yalnaani <yalnaani@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/22 11:27:56 by yalnaani          #+#    #+#              #
-#    Updated: 2025/05/22 12:27:14 by yalnaani         ###   ########.fr        #
+#    Updated: 2025/05/22 14:16:32 by yalnaani         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,8 +29,9 @@ OBJ_DIR = ./build
 CORE_DIR = $(SRCS_DIR)/core
 DATA_STRUCTURES_DIR = $(SRCS_DIR)/datastructures
 IO_DIR = $(SRCS_DIR)/io
+LOGGER_DIR = $(SRCS_DIR)/logger
+PARSER_DIR = $(SRCS_DIR)/parser
 UTILS_DIR = $(SRCS_DIR)/utils
-GNL_DIR = $(UTILS_DIR)/gnl
 
 LIBFT = ./libft
 
@@ -52,7 +53,7 @@ LIBFT_LIB=$(LIBFT)/libft.a
 
 MLXFLAGS = -lmlx -lXext -lm
 SRC_INCLUDE = -I$(INCL_DIR) -I$(CORE_DIR) -I$(DATA_STRUCTURES_DIR) \
-			-I$(IO_DIR) -I$(UTILS_DIR) -I$(GNL_DIR)
+			-I$(IO_DIR) -I$(UTILS_DIR) -I$(LOGGER_DIR) -I$(PARSER_DIR)
 CFLAGS = -Wall -Wextra -Werror $(SRC_INCLUDE)
 
 # **************************************************************************** #
@@ -63,14 +64,15 @@ MAIN_SOURCES = main.c
 
 CORE_SOURCES = 
 
-DATA_ST_SOURCES =
 VARS_DATA_SOURCES = ft_vars.c
 				
-IO_SOURCES = 
+IO_SOURCES = input_handler.c
 
-UTILS_SOURCES = 
-				
-GNL_SOURCES = 
+LOGGER_SOURCES = logger.c
+
+PARSER_SOURCES = parser.c
+
+UTILS_SOURCES = program_utils.c renderer_utils.c
 
 # **************************************************************************** #
 ########################         Object Files        ###########################
@@ -78,7 +80,13 @@ GNL_SOURCES =
 
 OBJS = $(addprefix $(OBJ_DIR)/, \
 	$(MAIN_SOURCES:.c=.o)\
-	$(addprefix datastructures/vars/,$(VARS_DATA_SOURCES:.c=.o)))
+	$(addprefix core/,$(CORE_SOURCES:.c=.o))\
+	$(addprefix datastructures/vars/,$(VARS_DATA_SOURCES:.c=.o))\
+	$(addprefix io/,$(IO_SOURCES:.c=.o))\
+	$(addprefix logger/,$(LOGGER_SOURCES:.c=.o))\
+	$(addprefix parser/,$(PARSER_SOURCES:.c=.o))\
+	$(addprefix utils/,$(UTILS_SOURCES:.c=.o))\
+	$(addprefix io/,$(VARS_DATA_SOURCES:.c=.o)))
 
 # **************************************************************************** #
 ########################        Build Targets        ###########################
@@ -100,8 +108,13 @@ $(NAME): $(OBJS)
 
 $(OBJ_DIR)/%.o: $(SRCS_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(OBJ_DIR)/core
 	@mkdir -p $(OBJ_DIR)/datastructures
 	@mkdir -p $(OBJ_DIR)/datastructures/vars
+	@mkdir -p $(OBJ_DIR)/io
+	@mkdir -p $(OBJ_DIR)/logger
+	@mkdir -p $(OBJ_DIR)/parser
+	@mkdir -p $(OBJ_DIR)/utils
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(LIBFT_LIB):

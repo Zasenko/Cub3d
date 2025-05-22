@@ -1,37 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shared.h                                           :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yalnaani <yalnaani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/22 11:49:19 by yalnaani          #+#    #+#             */
-/*   Updated: 2025/05/22 13:57:45 by yalnaani         ###   ########.fr       */
+/*   Created: 2025/05/22 13:28:57 by yalnaani          #+#    #+#             */
+/*   Updated: 2025/05/22 13:35:15 by yalnaani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHARED_H
-# define SHARED_H
+#ifndef UTILS_H
+# define UTILS_H
 
-#include "../libft/libft.h"
+# include "../datastructures/datastructures.h"
 
-#include "conf.h"
-
-#include "parser.h"
-
-#include "raycast.h"
-
-#include "err.h"
-
-typedef struct s_vars
-{
-	void	*mlx;
-	void	*win;
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}			t_vars;
+void	render_buffer(t_vars *vars);
+int		exit_program(t_vars *vars);
 
 #endif

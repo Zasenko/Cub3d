@@ -6,13 +6,11 @@
 /*   By: yalnaani <yalnaani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 11:52:19 by yalnaani          #+#    #+#             */
-/*   Updated: 2025/05/22 12:28:04 by yalnaani         ###   ########.fr       */
+/*   Updated: 2025/05/22 13:30:51 by yalnaani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/shared.h"
-#include "mlx.h"
-#include <stdlib.h>
+#include "ft_vars.h"
 
 void	delete_vars(t_vars *vars)
 {
