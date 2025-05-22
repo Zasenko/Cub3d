@@ -19,4 +19,6 @@
 
 #define ESCAPE_KEY 65307
 
+#define BUFFER_SIZE 1000
+
 #endif
