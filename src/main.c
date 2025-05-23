@@ -17,19 +17,38 @@
 #include "parser/input_parser.h"
 #include "logger/logger.h"
 
+#include <stdio.h>
 int main(int argc, char **argv)
 {
-    t_vars *vars;
-    int error;
+    // t_vars *vars;
+    t_map *map;
     
-    error = check_input(argc, argv);
-    if(error != TRUST_ME)
+    map = NULL;
+    map = check_input(argc, argv);
+    if(!map)
     {
-        log_error(error);
         exit(EXIT_FAILURE);
     }
-    vars = new_vars();
-    mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
-    hook(vars);
-    mlx_loop(vars->mlx);
+
+    printf("--- TEXTURES ---\n");
+    printf("no_path: [%s]\n", map->textures.no_path);
+    printf("so_path: [%s]\n", map->textures.so_path);
+    printf("we_path: [%s]\n", map->textures.we_path);
+    printf("ea_path: [%s]\n\n", map->textures.no_path);
+    printf("--- COLORS ---\n");
+    printf("f: %d.%d.%d\n", map->textures.f->r, map->textures.f->g, map->textures.f->b);
+    printf("f: %d.%d.%d\n\n", map->textures.c->r, map->textures.c->g, map->textures.c->b);
+    printf("--- MAP ---\n");
+    int i = 0;
+    while(map->map[i])
+    {
+        printf("%s\n", map->map[i]);
+        i++;
+    }
+
+    free_map(map);
+    // vars = new_vars();
+    // mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
+    // hook(vars);
+    // mlx_loop(vars->mlx);
 }

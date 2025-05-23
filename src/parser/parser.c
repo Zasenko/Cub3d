@@ -10,43 +10,84 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/shared.h"
-
-# include <stdlib.h>
-# include <stdio.h>
-# include <unistd.h>
-# include <fcntl.h>
-
+#include "../../include/shared.h"
 #include "m_parser.h"
 
-static char   *read_from_file(char *file_name);
-static int	check_file_name(char *file_name);
-static char	*read_file(int fd);
 char **analyze(char *str, t_map *map);
 t_map *init_map(void);
 
-void free_str(char **buf)
+void	free_str(char **s)
 {
-
+	if (s && *s)
+	{
+		free(*s);
+		*s = NULL;
+	}
 }
 
-int	allocate_buf_str(char **buf, char **str)
+int	ft_strcmp(char *s1, char *s2)
 {
-	if (!buf || !str)
-		return (0);
-	*buf = (char *)malloc((sizeof(char) * BUFFER_SIZE) + 1);
-	if (*buf == NULL)
-		return (0);
-	*str = (char *)malloc(sizeof(char));
-	if (*str == NULL)
-		return (free_str(buf), 0);
-	(*str)[0] = '\0';
-	return (1);
+	while (*s1 && *s2 && *s1 == *s2)
+	{
+		s1++;
+		s2++;
+	}
+	return ((unsigned char)*s1 - (unsigned char)*s2);
 }
 
-int check_input(int argc, char **argv)
+void	free_arr(char **arr)
 {
-	int		fd;
+	int	i;
+
+	i = 0;
+	if (arr)
+	{
+		while (arr[i])
+		{
+			free(arr[i]);
+			arr[i] = NULL;
+			i++;
+		}
+		free(arr);
+	}
+}
+
+void free_map(t_map *map)
+{
+	if (!map)
+		return;
+	if (map->map)
+		free_arr(map->map);
+	if (map->textures.no_path)
+		free_str(&map->textures.no_path);
+	if (map->textures.so_path)
+		free_str(&map->textures.so_path);
+	if (map->textures.we_path)
+		free_str(&map->textures.we_path);
+	if (map->textures.ea_path)
+		free_str(&map->textures.ea_path);
+	if (map->textures.f)
+		free(map->textures.f);
+	if (map->textures.c)
+		free(map->textures.c);
+	free(map);
+}
+
+int arr_str_count(char **str)
+{
+	int i;
+
+	i = 0;
+	if (!str || !*str)
+		return 0;
+	while(str[i])
+		i++;
+	return (i);
+}
+
+
+t_map *check_input(int argc, char **argv)
+{
 	char	*str;
 	t_map *map;
 
@@ -57,14 +98,12 @@ int check_input(int argc, char **argv)
 		return(NULL);
 	map = init_map();//malloc
 	if (!map)
-	{
-		free(str);
-		return(NULL);
-	}
+		return(free(str), NULL);
 	map->map = analyze(str, map);
 	free(str);
 	if (!map->map)
 	{
+		free_map(map);
 		return(NULL);
 	}
 	return map;
@@ -78,187 +117,223 @@ t_map *init_map(void)
 	if (!map)
 		return NULL;
 	map->map = NULL;
-	map->textures.no = NULL;
-	map->textures.so = NULL;
-	map->textures.we = NULL;
-	map->textures.ea = NULL;
+	map->textures.no_path = NULL;
+	map->textures.so_path = NULL;
+	map->textures.we_path = NULL;
+	map->textures.ea_path = NULL;
 	map->textures.f = NULL;
 	map->textures.c = NULL;
 	return (map);
 }
 
-int compare_args(char *str)
+int add_texture_path(char **path, char *arg)
 {
-		if (ft_strnstr("NO", str, 2))
-		{
-			//text
-        }
-        else if(ft_strnstr("SO", str, 2))
-        {
-			//text
-        }
-        else if(ft_strnstr("WE", str, 2))
-        {
-			//text
-        }
-        else if(ft_strnstr("EA", str, 2))
-        {
-			//text
-        }
-        else if(ft_strnstr("F", str, 2))
-        {
-			//color
-        }
-        else if(ft_strnstr("C", str, 2))
-        {
-			//color
-        }
-		else
-		{
-			//error
-		}
-}
+	char *str;
 
-int is_textures_set(t_map *map)
-{
-	t_textures textures;
-
-	textures = map->textures;
-	if (textures.no && textures.so && textures.we && textures.ea
-		&& textures.f && textures.c)
-	{
-		printf("Textures not full fill\n");// todo: delete line
+	if (!path || !*path | !arg)
 		return (0);
-	}
-	return (1);
-}
-
-int	analyze_line(char *str, t_map *map)
-{
-	int i;
-
-	i = 0;
-	while(str[i])
-	{
-		if(ft_isprint(str[i]))
-		{
-			char *trimmed = ft_strtrim(str[0], " \t");//malloc
-			if (!trimmed)
-			{
-				//error
-				return -1;
-			}
-
-			char	**arr = ft_split(trimmed, ' \t');//malloc
-			free(trimmed);
-			if (!arr)
-			{
-				//error
-				return -1;
-			}
-
-			// if arg == 2: good/bad
-			//	int compare_args(char *str);
-			//arg[0] compare
-			//-- arg[1] path;
-			//-- arg[1] color
-			return (1);
-		}
-		i++;
-	}
-	return (0);
-}
-
-char **analyze(char *str, t_map *map)
-{
-	char	**arr;
-	char	**map_arr;
-
-	map_arr = NULL;
-	arr = ft_split(str, '\n');//malloc
-	if (!arr)
-		return (NULL);
-
-	int i = 0;
-	while (arr[i])
-	{
-		if(is_textures_set(map) == 0)
-			if(!analyze_line(arr[i++], map))
-				continue;
-		else
-		{
-			//make map from arr[i]!
-			// free arr
-			return(map_arr);
-		}
-	}
-	// free arr
-	return(map_arr);
-}
-
-int	check_file_name(char *file_name)
-{
-	size_t	len;
-
-	if (!file_name)
-		return (0);
-	len = ft_strlen(file_name);
-	if (len < 4)
-	{
-		ft_putstr_fd("Error: incorrect file name (expected fileName.cub)\n", 2);
-		return (0);
-	}
-	if (ft_strstr(&file_name[len - 4], ".cub", 4) != 0)
-	{
-		ft_putstr_fd("Error: invalid file extension (expected .cub)\n", 2);
-		return (0);
-	}
-	return (1);
-}
-
-char	*read_file(int fd)
-{
-	char	*str;
-	char	*buf;
-	char	*temp;
-	int		buf_count;
-
-	if (fd < 0 || BUFFER_SIZE < 1)
-		return (NULL);
-	if (!allocate_buf_str(&buf, &str))
-		return (NULL);
-	buf_count = read(fd, buf, sizeof(char) * BUFFER_SIZE);
-	while (buf_count > 0)
-	{
-		buf[buf_count] = '\0';
-		temp = ft_strjoin(str, buf);
-		if (!temp)
-			return (free_str(&buf), free_str(&str), NULL);
-		free_str(&str);
-		str = temp;
-		buf_count = read(fd, buf, sizeof(char) * BUFFER_SIZE);
-	}
-	if (buf_count < 0)
-		return (free_str(&buf), free_str(&str), NULL);
-	return (free_str(&buf), str);
-}
-
-char   *read_from_file(char *file_name)
-{
-	int		fd;
-	char	*str;
-
-	if (!check_file_name(file_name))
-		return (NULL);
-	fd = open(file_name, O_RDONLY);
-	if (fd < 0)
-	{
-		ft_putstr_fd("Error: Can't open the file.\n", 2);
-		return (NULL);
-	}
-	str = read_file(fd);//malloc
-	close(fd);
+	str = ft_strdup(arg);
 	if (!str)
-		return (NULL);
-	return (str);
+		return (0);
+	*path = str;
+	return (1);
 }
+
+
+int set_texture_path(char **ptr, const char *str)
+{
+	if(!ptr || *ptr != NULL || !str)
+		return (0);
+	*ptr = ft_strdup(str);
+	if (!*ptr)
+		return (ft_putstr_fd("Error: malloc\n", 2), 0);
+	return (1);
+}
+
+int compare_args(char	**args, t_map *map)
+{
+		if (!ft_strcmp(args[0], "NO"))
+		{
+			if (!set_texture_path(&map->textures.no_path, args[1]))
+				return (0);
+        }
+        else if(!ft_strcmp(args[0], "SO"))
+        {
+			if (!set_texture_path(&map->textures.so_path, args[1]))
+				return (0);
+        }
+        else if(!ft_strcmp(args[0], "WE"))
+        {
+			if (!set_texture_path(&map->textures.we_path, args[1]))
+				return (0);
+        }
+        else if(!ft_strcmp(args[0], "EA"))
+        {
+			if (!set_texture_path(&map->textures.ea_path, args[1]))
+				return (0);
+        }
+        else if(!ft_strcmp(args[0], "F"))
+        {
+			char **ints;
+
+			if (map->textures.f != NULL)
+				return (0);
+			ints = ft_split(args[1], ','); //malloc
+			if (!ints)
+				return (0);
+
+			if (arr_str_count(ints) != 3)
+			{
+				free_arr(ints);
+				return (0);
+			}
+
+			t_color	*color = (t_color *)ft_calloc(sizeof(t_color), 1); //malloc
+			if (!color)
+			{
+				free_arr(ints);
+				return (0);
+			}
+
+			int i = 0;
+			while(ints[i] && i < 3)
+			{
+				if (ft_strlen(ints[i]) < 0 || ft_strlen(ints[i]) > 3)
+				{
+					free_arr(ints);
+					free(color);
+					return (0);
+				}
+				int f = 0;
+				while(ints[i][f])
+				{
+					if(!ft_isdigit(ints[i][f]))
+					{
+						free_arr(ints);
+						free(color);
+						return (0);
+					}
+					f++;
+				}
+
+				if (i == 0)
+				{
+					color->r = ft_atoi(ints[i]);
+					if (color->r < 0 || color->r > 255)
+					{
+						free_arr(ints);
+						free(color);
+						return (0);
+					}
+				}
+				else if (i == 1)
+				{
+					color->g = ft_atoi(ints[i]);
+					if (color->g < 0 || color->g > 255)
+					{
+						free_arr(ints);
+						free(color);
+						return (0);
+					}
+				}
+				else if (1 == 2)
+				{
+					color->b = ft_atoi(ints[i]);
+					if (color->b < 0 || color->b > 255)
+					{
+						free_arr(ints);
+						free(color);
+						return (0);
+					}
+				}
+
+				i++;
+			}
+			free_arr(ints);
+			map->textures.f = color;
+        }
+        else if(!ft_strcmp(args[0], "C"))
+        {
+			char **ints;
+
+			if (map->textures.c != NULL)
+				return (0);
+			ints = ft_split(args[1], ','); //malloc
+			if (!ints)
+				return (0);
+			if (arr_str_count(ints) != 3)
+			{
+				free_arr(ints);
+				return (0);
+			}
+			t_color	*color = (t_color *)ft_calloc(sizeof(t_color), 1); //malloc
+			if (!color)
+			{
+				free_arr(ints);
+				return (0);
+			}
+			int i = 0;
+			while(ints[i] && i < 3)
+			{
+				if (ft_strlen(ints[i]) < 0 || ft_strlen(ints[i]) > 3)
+				{
+					free_arr(ints);
+					free(color);
+					return (0);
+				}
+				int f = 0;
+				while(ints[i][f])
+				{
+					if(!ft_isdigit(ints[i][f]))
+					{
+						free_arr(ints);
+						free(color);
+						return (0);
+					}
+					f++;
+				}
+
+				if (i == 0)
+				{
+					color->r = ft_atoi(ints[i]);
+					if (color->r < 0 || color->r > 255)
+					{
+						free_arr(ints);
+						free(color);
+						return (0);
+					}
+				}
+				else if (i == 1)
+				{
+					color->g = ft_atoi(ints[i]);
+					if (color->g < 0 || color->g > 255)
+					{
+						free_arr(ints);
+						free(color);
+						return (0);
+					}
+				}
+				else if (1 == 2)
+				{
+					color->b = ft_atoi(ints[i]);
+					if (color->b < 0 || color->b > 255)
+					{
+						free_arr(ints);
+						free(color);
+						return (0);
+					}
+				}
+
+				i++;
+			}
+			free_arr(ints);
+			map->textures.c = color;
+        }
+		else
+		{
+			printf("error: invalid argument in file\n");
+			return (0);
+		}
+		return (1);
+}
+

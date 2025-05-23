@@ -22,10 +22,10 @@ typedef struct s_color
 
 typedef struct s_textures
 {
-	void	*no;
-	void	*so;
-	void	*we;
-	void	*ea;
+	char	*no_path;
+	char	*so_path;
+	char	*we_path;
+	char	*ea_path;
 	t_color	*f;
 	t_color	*c;
 }	t_textures;
@@ -40,7 +40,7 @@ typedef struct s_map
 {
 	char	**map;
 	t_textures	textures;
-	int	start[2];
+	t_point	start;
 }	t_map;
 
 #endif
