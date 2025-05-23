@@ -70,7 +70,7 @@ IO_SOURCES = input_handler.c
 
 LOGGER_SOURCES = logger.c
 
-PARSER_SOURCES = parser.c
+PARSER_SOURCES = parser.c read_file.c analyze.c utils.c
 
 UTILS_SOURCES = program_utils.c renderer_utils.c
 
@@ -85,8 +85,7 @@ OBJS = $(addprefix $(OBJ_DIR)/, \
 	$(addprefix io/,$(IO_SOURCES:.c=.o))\
 	$(addprefix logger/,$(LOGGER_SOURCES:.c=.o))\
 	$(addprefix parser/,$(PARSER_SOURCES:.c=.o))\
-	$(addprefix utils/,$(UTILS_SOURCES:.c=.o))\
-	$(addprefix io/,$(VARS_DATA_SOURCES:.c=.o)))
+	$(addprefix utils/,$(UTILS_SOURCES:.c=.o)))
 
 # **************************************************************************** #
 ########################        Build Targets        ###########################

@@ -13,4 +13,34 @@
 #ifndef PARSER_H
 #define PARSER_H
 
+typedef struct s_color
+{
+	int r;
+	int g;
+	int b;
+}	t_color;
+
+typedef struct s_textures
+{
+	char	*no_path;
+	char	*so_path;
+	char	*we_path;
+	char	*ea_path;
+	t_color	*f;
+	t_color	*c;
+}	t_textures;
+
+typedef struct s_point
+{
+	int	x;
+	int	y;
+}	t_point;
+
+typedef struct s_map
+{
+	char	**map;
+	t_textures	textures;
+	t_point	start;
+}	t_map;
+
 #endif

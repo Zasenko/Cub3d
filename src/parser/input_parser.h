@@ -13,6 +13,7 @@
 #ifndef INPUT_PARSER_H
 #define INPUT_PARSER_H
 
-int	check_input(int argc, char **argv);
+t_map *check_input(int argc, char **argv);
+void free_map(t_map *map);
 
 #endif
