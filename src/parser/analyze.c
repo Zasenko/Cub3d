@@ -73,7 +73,7 @@ int get_info_from_file(char **arr, int *i, t_map *map)
 	int res;
 
 	if(!arr || !i || !map)
-		return (0);
+		return (ft_putstr_fd("Error\n", 2), 0);
 	while (arr[(*i)])
 	{
 		if(!is_textures_set(map))
@@ -94,6 +94,30 @@ int get_info_from_file(char **arr, int *i, t_map *map)
 	return (1);
 }
 
+char	**create_map(char **arr)
+{
+	int count;
+	char	**map_arr;
+	int i;
+	char *str;
+
+	count = arr_str_count(arr);
+	map_arr = ft_calloc(count + 1, sizeof(char *));
+	if (!map_arr)
+		return (ft_putstr_fd("Error: calloc\n", 2), NULL);
+	i = 0;
+	while(arr[i])
+	{
+		str = NULL;
+		str = ft_strdup(arr[i]);
+		if (!str)
+			return (free_arr(map_arr), NULL);
+		map_arr[i] = str;
+		i++;
+	}
+	return (map_arr);
+}
+
 char **analyze(char *str, t_map *map)
 {
 	char	**arr;
@@ -102,15 +126,11 @@ char **analyze(char *str, t_map *map)
 
 	map_arr = NULL;
 	i = 0;
-	arr = ft_split(str, '\n');//malloc
+	arr = ft_split(str, '\n');
 	if (!arr)
-		return (ft_putstr_fd("Error: malloc", 2), NULL);
+		return (ft_putstr_fd("Error: malloc\n", 2), NULL);
 	if (!get_info_from_file(arr, &i, map))
-	{
-		free_arr(arr);
-		return (NULL);
-	}
-
+		return (free_arr(arr), NULL);
 	while(arr[i])
 	{
 		if(is_empty_line(arr[i]))
@@ -120,30 +140,7 @@ char **analyze(char *str, t_map *map)
 	}
 	if (!arr[i])
 		return (free_arr(arr), NULL);
-
-	int count = arr_str_count(&arr[i]);
-
-	map_arr = ft_calloc(count + 1, sizeof(char *));
-	if (!map_arr)
-	{
-		free_arr(arr);
-		return (NULL);
-	}
-
-	int r = 0;
-	while(arr[i])
-	{
-		char *duble = ft_strdup(arr[i]);
-		if (!duble)
-		{
-			free_arr(arr);
-			free_arr(map_arr);
-			return (NULL);
-		}
-		map_arr[r] = duble;
-		r++;
-		i++;
-	}
+	map_arr = create_map(&arr[i]);
 	free_arr(arr);
 	return(map_arr);
 }

@@ -19,12 +19,15 @@
 # include <stdio.h>
 # include <unistd.h>
 
-char    *read_from_file(char *file_name);
-void    free_str(char **s);
+char	*read_from_file(char *file_name);
+void	free_str(char **s);
 void	free_arr(char **arr);
-int     ft_strstr(char *str, char *to_find);
-int	ft_strcmp(char *s1, char *s2);
-char    **analyze(char *str, t_map *map);
-int     arr_str_count(char **str);
-int     compare_args(char	**args, t_map *map);
+int		ft_strstr(char *str, char *to_find);
+int		t_strcmp(char *s1, char *s2);
+char	**analyze(char *str, t_map *map);
+int		arr_str_count(char **str);
+int		compare_args(char	**args, t_map *map);
+void	free_map(t_map *map);
+int		ft_strcmp(char *s1, char *s2);
+
 #endif
