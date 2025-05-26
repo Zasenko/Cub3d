@@ -6,7 +6,7 @@
 /*   By: yalnaani <yalnaani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 13:56:07 by yalnaani          #+#    #+#             */
-/*   Updated: 2025/05/22 14:01:16 by yalnaani         ###   ########.fr       */
+/*   Updated: 2025/05/26 18:43:11 by yalnaani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 
 # include "../../include/shared.h"
 
-void log_error(int error);
+void	log_error(int error);
 
 #endif

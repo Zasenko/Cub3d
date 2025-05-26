@@ -6,15 +6,15 @@
 /*   By: yalnaani <yalnaani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 13:34:24 by yalnaani          #+#    #+#             */
-/*   Updated: 2025/05/25 15:58:57 by yalnaani         ###   ########.fr       */
+/*   Updated: 2025/05/26 18:44:15 by yalnaani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 
-int rgb_to_color(int r, int g, int b)
+int	rgb_to_color(int r, int g, int b)
 {
-    return (r << 16) | (g << 8) | b;
+	return ((r << 16) | (g << 8) | b);
 }
 
 void	render_buffer(t_vars *vars)
@@ -32,24 +32,6 @@ void	put_my_pixel(t_vars *vars, int x, int y, int color)
 				* (vars->bits_per_pixel) / 8);
 		*(unsigned int *)t_pixel = color;
 	}
-}
-
-void    draw_square(int x_pos, int y_pos, int size, int color, t_vars *vars)
-{
-    int x;
-    int y;
-
-    y = 0;
-    while (y < size)
-    {
-        x = 0;
-        while (x < size)
-        {
-			put_my_pixel(vars, (x + x_pos) , (y + y_pos), color);
-            x++;
-        }
-        y++;
-    }
 }
 
 void	clear_buffer(t_vars *vars)

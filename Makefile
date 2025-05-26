@@ -6,7 +6,7 @@
 #    By: yalnaani <yalnaani@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/22 11:27:56 by yalnaani          #+#    #+#              #
-#    Updated: 2025/05/26 13:59:54 by yalnaani         ###   ########.fr        #
+#    Updated: 2025/05/26 18:53:31 by yalnaani         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 ########################            COMPILER          ##########################
 # **************************************************************************** #
 
-CC = cc
+CC = gcc
 
 # **************************************************************************** #
 ########################           Directories       ###########################
@@ -54,15 +54,15 @@ LIBFT_LIB=$(LIBFT)/libft.a
 MLXFLAGS = -lmlx -lXext -lm
 SRC_INCLUDE = -I$(INCL_DIR) -I$(CORE_DIR) -I$(DATA_STRUCTURES_DIR) \
 			-I$(IO_DIR) -I$(UTILS_DIR) -I$(LOGGER_DIR) -I$(PARSER_DIR)
-CFLAGS = -Wall -Wextra -Werror $(SRC_INCLUDE)
-
+CFLAGS = -g -Wall -Wextra -Werror  $(SRC_INCLUDE)
+#-O2 -fno-builtin
 # **************************************************************************** #
 ########################         Source Files        ###########################
 # **************************************************************************** #
 
 MAIN_SOURCES = main.c
 
-CORE_SOURCES = core.c raycast.c
+CORE_SOURCES = core.c raycast.c raycast_utils.c
 
 VARS_DATA_SOURCES = ft_vars.c
 				
@@ -72,7 +72,7 @@ LOGGER_SOURCES = logger.c
 
 PARSER_SOURCES = parser.c analyze.c check_map.c read_file.c utils.c
 
-UTILS_SOURCES = program_utils.c renderer_utils.c
+UTILS_SOURCES = program_utils.c renderer_utils.c player_utils.c texture_utils.c
 
 # **************************************************************************** #
 ########################         Object Files        ###########################

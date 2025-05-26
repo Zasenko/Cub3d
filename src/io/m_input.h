@@ -6,14 +6,14 @@
 /*   By: yalnaani <yalnaani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 13:26:06 by yalnaani          #+#    #+#             */
-/*   Updated: 2025/05/22 13:32:13 by yalnaani         ###   ########.fr       */
+/*   Updated: 2025/05/26 17:41:32 by yalnaani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef M_INPUT_H
-#define M_INPUT_H
+# define M_INPUT_H
 
-#include "../../include/shared.h"
-#include "../utils/utils.h"
+# include "../../include/shared.h"
+# include "../utils/utils.h"
 
 #endif

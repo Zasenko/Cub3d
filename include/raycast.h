@@ -6,7 +6,7 @@
 /*   By: yalnaani <yalnaani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 13:23:08 by yalnaani          #+#    #+#             */
-/*   Updated: 2025/05/26 13:46:27 by yalnaani         ###   ########.fr       */
+/*   Updated: 2025/05/26 16:53:32 by yalnaani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct s_player
     t_vector2 cam_plane;
     int horizontal_input;
     int vertical_input;
+    int rotate_input;
 } t_player;
 
 typedef struct s_texture

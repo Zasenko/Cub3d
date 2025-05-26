@@ -6,7 +6,7 @@
 /*   By: yalnaani <yalnaani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 13:23:34 by yalnaani          #+#    #+#             */
-/*   Updated: 2025/05/26 13:45:22 by yalnaani         ###   ########.fr       */
+/*   Updated: 2025/05/26 15:43:20 by yalnaani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,5 @@ typedef struct s_map
 }	t_map;
 
 
-#define BUFFER_SIZE 1000
+#define BUFFER_SIZE 50000
 #endif

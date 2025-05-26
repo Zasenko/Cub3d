@@ -6,7 +6,7 @@
 /*   By: yalnaani <yalnaani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 13:28:57 by yalnaani          #+#    #+#             */
-/*   Updated: 2025/05/25 14:01:16 by yalnaani         ###   ########.fr       */
+/*   Updated: 2025/05/26 19:03:09 by yalnaani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,24 @@
 
 # include "../datastructures/datastructures.h"
 
-void	render_buffer(t_vars *vars);
-int		exit_program(t_vars *vars);
-void	draw_square(int x_pos, int y_pos, int size, int color, t_vars *vars);
-void	clear_buffer(t_vars *vars);
-void	put_my_pixel(t_vars *vars, int x, int y, int color);
-int		rgb_to_color(int r, int g, int b);
+void		render_buffer(t_vars *vars);
+
+void		init_program(t_vars *vars, t_map *map);
+
+int			exit_program(t_vars *vars);
+
+void		clear_buffer(t_vars *vars);
+
+void		put_my_pixel(t_vars *vars, int x, int y, int color);
+
+int			rgb_to_color(int r, int g, int b);
+
+t_texture	load_texture(t_vars *vars, char *path);
+
+void		spawn_at_index(t_vars *data, int spawn_x, int spawn_y);
+
+void		set_facing_direction(t_vars *data, t_direction dir);
+
+t_texture	load_texture(t_vars *vars, char *path);
+
 #endif

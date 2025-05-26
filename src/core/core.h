@@ -6,13 +6,15 @@
 /*   By: yalnaani <yalnaani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 15:59:54 by yalnaani          #+#    #+#             */
-/*   Updated: 2025/05/25 16:02:54 by yalnaani         ###   ########.fr       */
+/*   Updated: 2025/05/26 18:40:06 by yalnaani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CORE_H
-#define CORE_H
+# define CORE_H
 
-#include "../../include/shared.h"
-int render_frame(t_vars *vars);
+# include "../../include/shared.h"
+
+int	render_frame(t_vars *vars);
+
 #endif

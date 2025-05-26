@@ -6,7 +6,7 @@
 /*   By: yalnaani <yalnaani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 11:52:19 by yalnaani          #+#    #+#             */
-/*   Updated: 2025/05/25 15:59:16 by yalnaani         ###   ########.fr       */
+/*   Updated: 2025/05/26 18:42:35 by yalnaani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int	init_mlx(t_vars *vars)
 	return (0);
 }
 
-t_vars	*new_vars()
+t_vars	*new_vars(void)
 {
 	t_vars	*ptr;
 

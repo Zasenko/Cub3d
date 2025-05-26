@@ -6,7 +6,7 @@
 /*   By: yalnaani <yalnaani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 11:46:58 by yalnaani          #+#    #+#             */
-/*   Updated: 2025/05/26 11:56:07 by yalnaani         ###   ########.fr       */
+/*   Updated: 2025/05/26 18:18:00 by yalnaani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 # define LEFT_Key 65361
 # define RIGHT_Key 65363
 
-# define SPEED 1
-#define ROT_SPEED 0.05
+# define SPEED 0.1
+#define ROT_SPEED 0.1
 # define BLOCK_SIZE 64
 
 # define M_PI 3.14159265358979323846
