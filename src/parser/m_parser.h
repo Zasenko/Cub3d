@@ -29,5 +29,6 @@ int		arr_str_count(char **str);
 int		compare_args(char	**args, t_map *map);
 void	free_map(t_map *map);
 int		ft_strcmp(char *s1, char *s2);
+int     check_map(t_map *map);
 
 #endif

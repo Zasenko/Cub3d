@@ -142,5 +142,7 @@ char **analyze(char *str, t_map *map)
 		return (free_arr(arr), NULL);
 	map_arr = create_map(&arr[i]);
 	free_arr(arr);
+	if (!map_arr)
+		ft_putstr_fd("Error: malloc\n", 2);
 	return(map_arr);
 }

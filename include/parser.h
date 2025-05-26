@@ -41,6 +41,7 @@ typedef struct s_map
 	char	**map;
 	t_textures	textures;
 	t_point	start;
+	int direction;
 }	t_map;
 
 #endif

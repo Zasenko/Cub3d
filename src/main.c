@@ -29,7 +29,6 @@ int main(int argc, char **argv)
     {
         exit(EXIT_FAILURE);
     }
-
     printf("--- TEXTURES ---\n");
     printf("no_path: [%s]\n", map->textures.no_path);
     printf("so_path: [%s]\n", map->textures.so_path);
@@ -38,14 +37,15 @@ int main(int argc, char **argv)
     printf("--- COLORS ---\n");
     printf("f: %d.%d.%d\n", map->textures.f->r, map->textures.f->g, map->textures.f->b);
     printf("f: %d.%d.%d\n\n", map->textures.c->r, map->textures.c->g, map->textures.c->b);
+    printf("--- START POSITION ---\n");
+    printf("x: %d, y: %d, direction: %d\n", map->start.x, map->start.y, map->direction);
     printf("--- MAP ---\n");
     int i = 0;
     while(map->map[i])
     {
-        printf("%s\n", map->map[i]);
+        printf("%d: %s\n", i, map->map[i]);
         i++;
     }
-
     free_map(map);
     // vars = new_vars();
     // mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);

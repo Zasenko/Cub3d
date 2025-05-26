@@ -27,6 +27,7 @@ t_map	*init_map(void)
 	map->textures.ea_path = NULL;
 	map->textures.f = NULL;
 	map->textures.c = NULL;
+	map->direction = 0;
 	return (map);
 }
 
@@ -50,6 +51,8 @@ t_map *check_input(int argc, char **argv)
 		free_map(map);
 		return(NULL);
 	}
+	if(!check_map(map))
+		return(free_map(map), NULL);
 	return map;
 }
 

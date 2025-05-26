@@ -70,7 +70,7 @@ IO_SOURCES = input_handler.c
 
 LOGGER_SOURCES = logger.c
 
-PARSER_SOURCES = parser.c read_file.c analyze.c utils.c
+PARSER_SOURCES = parser.c read_file.c analyze.c utils.c check_map.c
 
 UTILS_SOURCES = program_utils.c renderer_utils.c
 
