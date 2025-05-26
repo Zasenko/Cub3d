@@ -1,39 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shared.h                                           :+:      :+:    :+:   */
+/*   m_core.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yalnaani <yalnaani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/22 11:49:19 by yalnaani          #+#    #+#             */
-/*   Updated: 2025/05/26 13:51:08 by yalnaani         ###   ########.fr       */
+/*   Created: 2025/05/22 15:46:58 by yalnaani          #+#    #+#             */
+/*   Updated: 2025/05/25 15:57:21 by yalnaani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHARED_H
-# define SHARED_H
+#ifndef M_CORE_H
+# define M_CORE_H
 
-# include "../libft/libft.h"
-# include "conf.h"
-# include "err.h"
-# include "raycast.h"
-# include "parser.h"
+# include "../../include/shared.h"
+# include "../utils/utils.h"
+# include "mlx.h"
+# include <math.h>
 
-
-typedef struct s_vars
-{
-	void		*mlx;
-	void		*win;
-	void		*img;
-	char		*addr;
-	int			bits_per_pixel;
-	int			line_length;
-	int			endian;
-	t_player	*player;
-	char **map;
-	t_map *map_s;
-	t_vector2_int map_dimesnion;
-	t_texture	textures[4];
-}				t_vars;
-
+void	render_walls(t_vars *data);
 #endif

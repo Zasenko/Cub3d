@@ -6,7 +6,7 @@
 /*   By: yalnaani <yalnaani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 11:52:19 by yalnaani          #+#    #+#             */
-/*   Updated: 2025/05/22 13:30:51 by yalnaani         ###   ########.fr       */
+/*   Updated: 2025/05/25 15:59:16 by yalnaani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ static int	init_mlx(t_vars *vars)
 	vars->mlx = mlx_init();
 	if (!vars->mlx)
 		return (-1);
-	vars->win = mlx_new_window(vars->mlx, WIN_WIDTH, WIN_HEIGHT, TITLE);
+	vars->win = mlx_new_window(vars->mlx, WIDTH, HEIGHT, TITLE);
 	if (!vars->win)
 		return (-1);
-	vars->img = mlx_new_image(vars->mlx, WIN_WIDTH, WIN_HEIGHT);
+	vars->img = mlx_new_image(vars->mlx, WIDTH, HEIGHT);
 	if (!vars->img)
 		return (-1);
 	vars->addr = mlx_get_data_addr(vars->img, &vars->bits_per_pixel,
@@ -56,6 +56,7 @@ t_vars	*new_vars()
 	ptr->mlx = NULL;
 	ptr->img = NULL;
 	ptr->addr = NULL;
+	ptr->player = NULL;
 	if (init_mlx(ptr) == -1)
 	{
 		delete_vars(ptr);

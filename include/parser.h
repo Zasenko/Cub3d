@@ -6,12 +6,13 @@
 /*   By: yalnaani <yalnaani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 13:23:34 by yalnaani          #+#    #+#             */
-/*   Updated: 2025/05/22 13:23:47 by yalnaani         ###   ########.fr       */
+/*   Updated: 2025/05/26 13:45:22 by yalnaani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 #define PARSER_H
+#include "shared.h"
 
 typedef struct s_color
 {
@@ -41,7 +42,11 @@ typedef struct s_map
 	char	**map;
 	t_textures	textures;
 	t_point	start;
-	int direction;
+	t_direction direction;
+    int row_l;
+    int col_l;
 }	t_map;
 
+
+#define BUFFER_SIZE 1000
 #endif

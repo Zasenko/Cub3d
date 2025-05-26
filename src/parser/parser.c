@@ -6,7 +6,7 @@
 /*   By: yalnaani <yalnaani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 13:38:16 by yalnaani          #+#    #+#             */
-/*   Updated: 2025/05/22 14:53:44 by yalnaani         ###   ########.fr       */
+/*   Updated: 2025/05/26 13:47:18 by yalnaani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ t_map	*init_map(void)
 	map->textures.ea_path = NULL;
 	map->textures.f = NULL;
 	map->textures.c = NULL;
-	map->direction = 0;
+	map->direction = DIR_NONE;
+	map->row_l = 0;
+    map->col_l = 0;
 	return (map);
 }
 

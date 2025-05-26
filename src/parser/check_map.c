@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dzasenko <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: yalnaani <yalnaani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 10:36:29 by dzasenko          #+#    #+#             */
-/*   Updated: 2025/05/26 10:37:19 by dzasenko         ###   ########.fr       */
+/*   Updated: 2025/05/26 13:47:05 by yalnaani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int check_chars(char *str, char *set)
     }
     return (1);
 }
-
+/// set the dir
 int fill(t_map *map, int row, int col)
 {
 	if (row < 0 || col < 0
@@ -52,16 +52,16 @@ int fill(t_map *map, int row, int col)
 		return (1);
 	if (check_char(map->map[row][col], "NSEW"))
     {
-        if (map->direction != 0)
+        if (map->direction != DIR_NONE)
             return (0);
         if (map->map[row][col] == 'N')
-            map->direction = 1;
+            map->direction = DIR_NORTH;
         else if (map->map[row][col] == 'S')
-            map->direction = 2;
+            map->direction = DIR_SOUTH;
         else if (map->map[row][col] == 'E')
-            map->direction = 3;
+            map->direction = DIR_EAST;
         else if (map->map[row][col] == 'W')
-            map->direction = 4;
+            map->direction = DIR_WEST;
         map->start.x = col;
         map->start.y = row;
     }
@@ -113,7 +113,7 @@ int check_walls(t_map *map)
         }
         i++;
     }
-    if(map->direction == 0)
+    if(map->direction == DIR_NONE)
         return (0);
     fill_back(map);
     return (1);
@@ -128,8 +128,11 @@ int check_map(t_map *map)
     {
         if(!check_chars(map->map[i], " 10NSEW"))
             return (ft_putstr_fd("Error: Wrong simbol on Map", 2), 0);
+        if((int)ft_strlen(map->map[i]) > map->row_l)
+            map->row_l = ft_strlen(map->map[i]);
         i++;
     }
+    map->col_l = i;
     if(!check_walls(map))
         return (ft_putstr_fd("Error: Incrorrect Map", 2), 0);
     return (1);

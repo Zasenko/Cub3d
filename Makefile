@@ -6,7 +6,7 @@
 #    By: yalnaani <yalnaani@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/22 11:27:56 by yalnaani          #+#    #+#              #
-#    Updated: 2025/05/22 14:16:32 by yalnaani         ###   ########.fr        #
+#    Updated: 2025/05/26 13:59:54 by yalnaani         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,7 @@ CFLAGS = -Wall -Wextra -Werror $(SRC_INCLUDE)
 
 MAIN_SOURCES = main.c
 
-CORE_SOURCES = 
+CORE_SOURCES = core.c raycast.c
 
 VARS_DATA_SOURCES = ft_vars.c
 				
@@ -70,7 +70,7 @@ IO_SOURCES = input_handler.c
 
 LOGGER_SOURCES = logger.c
 
-PARSER_SOURCES = parser.c read_file.c analyze.c utils.c check_map.c
+PARSER_SOURCES = parser.c analyze.c check_map.c read_file.c utils.c
 
 UTILS_SOURCES = program_utils.c renderer_utils.c
 
@@ -85,7 +85,8 @@ OBJS = $(addprefix $(OBJ_DIR)/, \
 	$(addprefix io/,$(IO_SOURCES:.c=.o))\
 	$(addprefix logger/,$(LOGGER_SOURCES:.c=.o))\
 	$(addprefix parser/,$(PARSER_SOURCES:.c=.o))\
-	$(addprefix utils/,$(UTILS_SOURCES:.c=.o)))
+	$(addprefix utils/,$(UTILS_SOURCES:.c=.o))\
+	)
 
 # **************************************************************************** #
 ########################        Build Targets        ###########################
