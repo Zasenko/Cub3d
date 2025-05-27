@@ -33,6 +33,123 @@ t_map	*init_map(void)
 	return (map);
 }
 
+int len_till_sep(char *str)
+{
+	int i;
+
+	i = 0;
+	if(!str)
+		return (0);
+	while(str[i] != ' ' && str[i] != '\t' && str[i] != '\n')
+		i++;
+	return (i);
+}
+
+void set_textures(int texture, char *arg, t_map *map)
+{
+	if(texture == 1)
+		map->textures.no_path = arg;
+	else if(texture == 2)
+		map->textures.so_path = arg;
+	else if(texture == 3)
+		map->textures.we_path = arg;
+	else if(texture == 4)
+		map->textures.ea_path = arg;
+}
+
+int get_texture_path(int texture, char *str, int *i, t_map *map)
+{
+	int		len;
+	char	*value;
+	int f;
+
+	if = 0;
+	if (str[*i] != ' ' || str[*i] != '\t')
+		return (ft_putstr_fd("Error\n Invalid arguments in file\n", 2), 0);
+	while (str[*i] == ' ' || str[*i] == '\t')
+		*i++;
+	len = len_till_sep(str[*i]);
+	if (len < 1)
+		return (ft_putstr_fd("Error\n Invalid arguments in file\n", 2) ,0);
+	value = calloc(sizeof(char *), len + 1);
+	if (!value)
+		return (ft_putstr_fd("Error\nMalloc\n", 2), 0);
+	while(f < len)
+	{
+		value[f] = str[*i];
+		*i = *i + 1;
+		f++;
+	}
+	map->textures.
+}
+
+int get_textures(char *str, int *i, t_map *map)
+{
+	int texture;
+
+	texture = 0;
+	if (!ft_strncmp(str[*i], "NO", 2))
+		texture = 1;
+    else if(!ft_strncmp(str[*i], "SO", 2))
+		texture = 2;
+    else if(!ft_strncmp(str[*i], "WE", 2))
+		texture = 3;
+    else if(!ft_strncmp(str[*i], "EA", 2))
+		texture = 4;
+	*i = *i + 2;
+	return (get_texture_path(texture, str, i, map));
+}
+
+int get_colors(char **str, int *i, t_map *map)
+{
+
+}
+
+int compare_args(char *str, int *i, t_map *map)
+{
+
+
+	if(!ft_strcmp(str[*i], "NO") || !ft_strcmp(str[*i], "SO")
+		|| !ft_strcmp(str[*i], "WE") || !ft_strcmp(str[*i], "EA"))
+		return (get_textures(str, i, map));
+	else if(!ft_strcmp(str[*i], "F") || !ft_strcmp(str[*i], "C"))
+		return (get_textures(str, i, map));
+	else
+	{
+		ft_putstr_fd("Error\n Invalid arguments in file\n", 2);
+		return (0);
+	}
+}
+
+void get_args(char *str, t_map *map)
+{
+	int i;
+	// int len;
+	int res = 0;
+
+	i = 0;
+	while(str[i])
+	{
+		if(str[i] == ' ' || str[i] == '\t' || str[i] == '\n')
+			i++;
+		
+		
+		
+		res = compare_args(str, &i, map);
+		if (!res)
+		{
+
+		}
+		else
+		{
+			
+		}
+		
+		i++;
+	}
+
+}
+
 t_map *check_input(int argc, char **argv)
 {
 	char	*str;
@@ -46,6 +163,10 @@ t_map *check_input(int argc, char **argv)
 	map = init_map();
 	if (!map)
 		return(free(str), NULL);
+
+
+
+
 	map->map = analyze(str, map);
 	free(str);
 	if (!map->map)
@@ -58,15 +179,15 @@ t_map *check_input(int argc, char **argv)
 	return map;
 }
 
-int set_texture_path(char **path, const char *str)
-{
-	if(!path || *path != NULL || !str)
-		return (ft_putstr_fd("Error\n", 2), 0);
-	*path = ft_strdup(str);
-	if (!*path)
-		return (ft_putstr_fd("Error: malloc\n", 2), 0);
-	return (1);
-}
+// int set_texture_path(char **path, const char *str)
+// {
+// 	if(!path || *path != NULL || !str)
+// 		return (ft_putstr_fd("Error\n", 2), 0);
+// 	*path = ft_strdup(str);
+// 	if (!*path)
+// 		return (ft_putstr_fd("Error: malloc\n", 2), 0);
+// 	return (1);
+// }
 
 int check_color_value(int arg)
 {
@@ -155,43 +276,43 @@ int set_colore(t_color **path, char *str)
 	return (1);
 }
 
-int compare_args(char	**args, t_map *map)
-{
-		if (!ft_strcmp(args[0], "NO"))
-		{
-			if (!set_texture_path(&map->textures.no_path, args[1]))
-				return (0);
-        }
-        else if(!ft_strcmp(args[0], "SO"))
-        {
-			if (!set_texture_path(&map->textures.so_path, args[1]))
-				return (0);
-        }
-        else if(!ft_strcmp(args[0], "WE"))
-        {
-			if (!set_texture_path(&map->textures.we_path, args[1]))
-				return (0);
-        }
-        else if(!ft_strcmp(args[0], "EA"))
-        {
-			if (!set_texture_path(&map->textures.ea_path, args[1]))
-				return (0);
-        }
-        else if(!ft_strcmp(args[0], "F"))
-        {
-			if (!set_colore(&map->textures.f, args[1]))
-				return (0);
-        }
-        else if(!ft_strcmp(args[0], "C"))
-        {
-			if (!set_colore(&map->textures.c, args[1]))
-				return (0);
-        }
-		else
-		{
-			printf("error: invalid argument in file\n");
-			return (0);
-		}
-		return (1);
-}
+// int compare_args(char	**args, t_map *map)
+// {
+// 		if (!ft_strcmp(args[0], "NO"))
+// 		{
+// 			if (!set_texture_path(&map->textures.no_path, args[1]))
+// 				return (0);
+//         }
+//         else if(!ft_strcmp(args[0], "SO"))
+//         {
+// 			if (!set_texture_path(&map->textures.so_path, args[1]))
+// 				return (0);
+//         }
+//         else if(!ft_strcmp(args[0], "WE"))
+//         {
+// 			if (!set_texture_path(&map->textures.we_path, args[1]))
+// 				return (0);
+//         }
+//         else if(!ft_strcmp(args[0], "EA"))
+//         {
+// 			if (!set_texture_path(&map->textures.ea_path, args[1]))
+// 				return (0);
+//         }
+//         else if(!ft_strcmp(args[0], "F"))
+//         {
+// 			if (!set_colore(&map->textures.f, args[1]))
+// 				return (0);
+//         }
+//         else if(!ft_strcmp(args[0], "C"))
+//         {
+// 			if (!set_colore(&map->textures.c, args[1]))
+// 				return (0);
+//         }
+// 		else
+// 		{
+// 			printf("error: invalid argument in file\n");
+// 			return (0);
+// 		}
+// 		return (1);
+// }
 
