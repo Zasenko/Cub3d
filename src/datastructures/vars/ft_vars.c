@@ -6,16 +6,27 @@
 /*   By: yalnaani <yalnaani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 11:52:19 by yalnaani          #+#    #+#             */
-/*   Updated: 2025/05/26 18:42:35 by yalnaani         ###   ########.fr       */
+/*   Updated: 2025/05/27 09:20:59 by yalnaani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vars.h"
 
+static void destroy_vars_textures(t_vars *vars)
+{
+	if(vars == NULL || vars->mlx == NULL)
+		return;
+	destroy_texture(vars, &vars->textures[0]);
+	destroy_texture(vars, &vars->textures[1]);
+	destroy_texture(vars, &vars->textures[2]);
+	destroy_texture(vars, &vars->textures[3]);
+}
+
 void	delete_vars(t_vars *vars)
 {
 	if (vars->mlx != NULL)
 	{
+		destroy_vars_textures(vars);
 		if (vars->win)
 			mlx_destroy_window(vars->mlx, vars->win);
 		if (vars->img)
@@ -24,6 +35,9 @@ void	delete_vars(t_vars *vars)
 		free(vars->mlx);
 		vars->mlx = NULL;
 	}
+	if(vars->map_s != NULL)
+		free_map(vars->map_s);
+	
 	free(vars);
 }
 

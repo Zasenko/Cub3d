@@ -6,7 +6,7 @@
 /*   By: yalnaani <yalnaani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 15:46:27 by yalnaani          #+#    #+#             */
-/*   Updated: 2025/05/26 18:52:19 by yalnaani         ###   ########.fr       */
+/*   Updated: 2025/05/27 09:04:32 by yalnaani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	handle_movement(t_player *player, char **map)
 
 int	render_frame(t_vars *vars)
 {
-	handle_movement(vars->player, vars->map);
+	handle_movement(vars->player, vars->map_s->map);
 	handle_rotation(vars);
 	draw_floor_and_ceiling(vars);
 	render_walls(vars);

@@ -6,7 +6,7 @@
 /*   By: yalnaani <yalnaani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 13:23:08 by yalnaani          #+#    #+#             */
-/*   Updated: 2025/05/26 16:53:32 by yalnaani         ###   ########.fr       */
+/*   Updated: 2025/05/27 09:35:25 by yalnaani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,5 @@ typedef enum e_direction {
     DIR_SOUTH,
     DIR_WEST
 } t_direction;
-
-/*typedef struct s_map
-{
-    t_vector2 dimension;
-    
-} t_map;*/
-
-
 
 #endif

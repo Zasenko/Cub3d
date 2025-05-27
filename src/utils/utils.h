@@ -6,7 +6,7 @@
 /*   By: yalnaani <yalnaani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 13:28:57 by yalnaani          #+#    #+#             */
-/*   Updated: 2025/05/26 19:03:09 by yalnaani         ###   ########.fr       */
+/*   Updated: 2025/05/27 09:15:35 by yalnaani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,7 @@ void		spawn_at_index(t_vars *data, int spawn_x, int spawn_y);
 void		set_facing_direction(t_vars *data, t_direction dir);
 
 t_texture	load_texture(t_vars *vars, char *path);
+
+void		destroy_texture(t_vars *vars, t_texture *tex);
 
 #endif

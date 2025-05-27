@@ -6,7 +6,7 @@
 /*   By: yalnaani <yalnaani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 11:26:40 by yalnaani          #+#    #+#             */
-/*   Updated: 2025/05/26 19:15:06 by yalnaani         ###   ########.fr       */
+/*   Updated: 2025/05/27 09:29:37 by yalnaani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@ int	main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 	vars = new_vars();
+	if(!vars)
+	{
+		free_map(map);
+		exit(1);
+	}
 	vars->player = &player;
 	init_program(vars, map);
 	hook_events(vars);

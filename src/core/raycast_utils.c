@@ -6,7 +6,7 @@
 /*   By: yalnaani <yalnaani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:51:37 by yalnaani          #+#    #+#             */
-/*   Updated: 2025/05/26 18:00:27 by yalnaani         ###   ########.fr       */
+/*   Updated: 2025/05/27 09:04:48 by yalnaani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	perform_dda(t_ray_info *ray, t_vars *vars)
 			ray->hit = true;
 			break ;
 		}
-		if (vars->map[ray->map_pos.x][ray->map_pos.y] != '0')
+		if (vars->map_s->map[ray->map_pos.x][ray->map_pos.y] != '0')
 			ray->hit = true;
 	}
 }

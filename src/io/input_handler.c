@@ -6,7 +6,7 @@
 /*   By: yalnaani <yalnaani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 13:07:32 by yalnaani          #+#    #+#             */
-/*   Updated: 2025/05/26 17:41:26 by yalnaani         ###   ########.fr       */
+/*   Updated: 2025/05/27 09:36:56 by yalnaani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ int	key_press(int keycode, t_vars *vars)
 
 int	key_release(int keycode, t_vars *vars)
 {
-	if (keycode == W_KEY || keycode == S_KEY)
+	if (keycode == 'w' || keycode == 's')
 		vars->player->vertical_input = 0;
-	else if (keycode == A_KEY || keycode == D_KEY)
+	else if (keycode == 'a' || keycode == 'd')
 		vars->player->horizontal_input = 0;
 	else if (keycode == LEFT_Key || keycode == RIGHT_Key)
 		vars->player->rotate_input = 0;

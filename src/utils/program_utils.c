@@ -6,7 +6,7 @@
 /*   By: yalnaani <yalnaani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 13:29:23 by yalnaani          #+#    #+#             */
-/*   Updated: 2025/05/26 19:05:58 by yalnaani         ###   ########.fr       */
+/*   Updated: 2025/05/27 09:05:06 by yalnaani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	init_program(t_vars *vars, t_map *map)
 	vars->textures[2] = load_texture(vars, map->textures.we_path);
 	vars->textures[3] = load_texture(vars, map->textures.ea_path);
 	vars->map_s = map;
-	vars->map = map->map;
 	vars->map_dimesnion = (t_vector2_int){map->col_l, map->row_l};
 	vars->player->horizontal_input = 0;
 	vars->player->vertical_input = 0;

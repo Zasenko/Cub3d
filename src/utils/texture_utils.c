@@ -6,7 +6,7 @@
 /*   By: yalnaani <yalnaani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 14:02:06 by yalnaani          #+#    #+#             */
-/*   Updated: 2025/05/26 19:05:55 by yalnaani         ###   ########.fr       */
+/*   Updated: 2025/05/27 09:20:30 by yalnaani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,14 @@ t_texture	load_texture(t_vars *vars, char *path)
 	texture.texture_data = mlx_get_data_addr(texture.texture, &texture.bpp,
 			&texture.length, &texture.endian);
 	return (texture);
+}
+
+void	destroy_texture(t_vars *vars, t_texture *tex)
+{
+	if (tex->texture)
+	{
+		mlx_destroy_image(vars->mlx, tex->texture);
+		tex->texture = NULL;
+		tex->texture_data = NULL;
+	}
 }
