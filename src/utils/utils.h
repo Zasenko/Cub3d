@@ -6,7 +6,7 @@
 /*   By: yalnaani <yalnaani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 13:28:57 by yalnaani          #+#    #+#             */
-/*   Updated: 2025/05/27 09:15:35 by yalnaani         ###   ########.fr       */
+/*   Updated: 2025/05/28 09:34:21 by yalnaani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,7 @@ void		set_facing_direction(t_vars *data, t_direction dir);
 t_texture	load_texture(t_vars *vars, char *path);
 
 void		destroy_texture(t_vars *vars, t_texture *tex);
+
+void		check_resolution(void);
 
 #endif

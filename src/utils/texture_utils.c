@@ -6,7 +6,7 @@
 /*   By: yalnaani <yalnaani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 14:02:06 by yalnaani          #+#    #+#             */
-/*   Updated: 2025/05/27 09:20:30 by yalnaani         ###   ########.fr       */
+/*   Updated: 2025/05/28 11:23:48 by yalnaani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ t_texture	load_texture(t_vars *vars, char *path)
 			&texture.dimension.x, &texture.dimension.y);
 	if (!texture.texture)
 	{
-		printf("Error: Could not load texture %s\n", path);
-		exit(1);
+		ft_putstr_fd("Error\nCould not load texture \n", 2);
+		return (texture);
 	}
 	texture.texture_data = mlx_get_data_addr(texture.texture, &texture.bpp,
 			&texture.length, &texture.endian);

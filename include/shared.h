@@ -6,7 +6,7 @@
 /*   By: yalnaani <yalnaani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 11:49:19 by yalnaani          #+#    #+#             */
-/*   Updated: 2025/05/27 09:53:09 by yalnaani         ###   ########.fr       */
+/*   Updated: 2025/05/28 09:23:57 by yalnaani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "conf.h"
 # include "err.h"
 # include "parser.h"
-# include "raycast.h"
+#include <stdbool.h>
 
 typedef struct s_vector2_int
 {
@@ -49,7 +49,6 @@ typedef struct s_map
 	int				row_l;
 	int				col_l;
 }					t_map;
-
 
 typedef struct s_ray_info
 {

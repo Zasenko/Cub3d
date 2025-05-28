@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmitryzasenko <dmitryzasenko@student.42    +#+  +:+       +#+        */
+/*   By: yalnaani <yalnaani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 11:26:40 by yalnaani          #+#    #+#             */
-/*   Updated: 2025/05/28 07:36:18 by dmitryzasen      ###   ########.fr       */
+/*   Updated: 2025/05/28 09:34:30 by yalnaani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,14 @@ int	main(int argc, char **argv)
 	t_map		*map;
 	t_player	player;
 
+	check_resolution();
 	map = check_input(argc, argv);
 	if (!map)
 	{
 		exit(EXIT_FAILURE);
 	}
 	vars = new_vars();
-	if(!vars)
+	if (!vars)
 	{
 		free_map(map);
 		exit(1);

@@ -84,9 +84,23 @@ int	init_color(char *str, int c, t_map *map)
 		return (free_arr(ints), free(color), 0);
 	free_arr(ints);
 	if(c == 1)
+	{
+		if (map->textures.f)
+		{
+			free(color);
+			return (0);
+		}
 		map->textures.f = color;
+	}	
 	else if(c == 2)
+	{
+		if(map->textures.c)
+		{
+			free(color);
+			return (0);
+		}
 		map->textures.c = color;
+	}
 	else
 		return (free(color), 0);
 	return (1);
