@@ -3,31 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yalnaani <yalnaani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dmitryzasenko <dmitryzasenko@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 10:36:29 by dzasenko          #+#    #+#             */
-/*   Updated: 2025/05/26 13:47:05 by yalnaani         ###   ########.fr       */
+/*   Updated: 2025/05/27 21:05:23 by dmitryzasen      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/shared.h"
 #include "m_parser.h"
 
-int check_char(char c, char *set)
-{
-    int i;
-
-    i = 0;
-    while(set[i])
-    {
-        if (set[i] == c)
-            return (1);
-        i++;
-    }
-    return (0);
-}
-
-int check_chars(char *str, char *set)
+int check_map_chars(char *str, char *set)
 {
     int i;
 
@@ -118,21 +104,27 @@ int check_walls(t_map *map)
     fill_back(map);
     return (1);
 }
-
+//
 int check_map(t_map *map)
 {
     int i;
+    int len;
 
     i = 0;
     while(map->map[i])
     {
-        if(!check_chars(map->map[i], " 10NSEW"))
-            return (ft_putstr_fd("Error: Wrong simbol on Map", 2), 0);
-        if((int)ft_strlen(map->map[i]) > map->row_l)
-            map->row_l = ft_strlen(map->map[i]);
+        len = ft_strlen(map->map[i]);
+        if(len > map->row_l)
+        {
+            map->row_l = len;
+            if (map->row_l > 300)
+                return (ft_putstr_fd("Error\nMap too big\n", 2), 0);  
+        }
         i++;
     }
     map->col_l = i;
+    if (map->col_l > 300)
+        return (ft_putstr_fd("Error\nMap too big\n", 2), 0);
     if(!check_walls(map))
         return (ft_putstr_fd("Error: Incrorrect Map", 2), 0);
     return (1);

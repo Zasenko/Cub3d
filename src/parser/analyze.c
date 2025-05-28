@@ -3,31 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   analyze.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dzasenko <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dmitryzasenko <dmitryzasenko@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 13:14:51 by dzasenko          #+#    #+#             */
-/*   Updated: 2025/05/23 13:14:53 by dzasenko         ###   ########.fr       */
+/*   Updated: 2025/05/27 21:53:00 by dmitryzasen      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/shared.h"
 #include "m_parser.h"
 
-int	is_empty_line(char *str)
-{
-	int	i;
-
-	i = 0;
-	while(str[i])
-	{
-		if (str[i] == ' ' || str[i] == '\t')
-			i++;
-		else
-			return (0);
-	}
-	return (1);
-}
-
+//
 int	is_textures_set(t_map *map)
 {
 	t_textures	textures;
@@ -40,109 +26,113 @@ int	is_textures_set(t_map *map)
 	}
 	return (0);
 }
-
-int	analyze_line(char *str, t_map *map)
+//
+int skip_empty_lines(char *str, int *i)
 {
-	char	**args;
-	int		i;
-
-	i = 0;
-	if(!str || !map)
-		return (-1);
-	while(str[i])
-	{
-		if(ft_isalpha(str[i]))
-		{
-			args = ft_split(str, ' ');//malloc
-			if (!args)
-				return (ft_putstr_fd("Error: malloc\n", 2), -1);
-			if (arr_str_count(args) != 2)
-				return (free_arr(args),ft_putstr_fd("Error: parse\n", 2), -1);
-			if (!compare_args(args, map))
-				return (free_arr(args), -1);
-			free_arr(args);
-			return (1);
-		}
-		i++;
-	}
-	return (0);
-}
-
-int get_info_from_file(char **arr, int *i, t_map *map)
-{
-	int res;
-
-	if(!arr || !i || !map)
-		return (ft_putstr_fd("Error\n", 2), 0);
-	while (arr[(*i)])
-	{
-		if(!is_textures_set(map))
-		{
-			res = analyze_line(arr[(*i)], map);
-			if(res == 0)
-			{
-				(*i)++;
-				continue;
-			}
-			else if (res == -1)
-				return (0);
-			(*i)++;
-		}
-		else
-			break;
-	}
+	while (str[*i] && (str[*i] == ' ' || str[*i] == '\t' || str[*i] == '\n'))
+		*i++;
+	if (!str[*i])
+		return (0);
 	return (1);
 }
-
-char	**create_map(char **arr)
+//
+int	is_empty_line(char *str)
 {
-	int count;
-	char	**map_arr;
-	int i;
-	char *str;
+	int	i;
 
-	count = arr_str_count(arr);
-	map_arr = ft_calloc(count + 1, sizeof(char *));
-	if (!map_arr)
-		return (ft_putstr_fd("Error: calloc\n", 2), NULL);
 	i = 0;
-	while(arr[i])
-	{
-		str = NULL;
-		str = ft_strdup(arr[i]);
-		if (!str)
-			return (free_arr(map_arr), NULL);
-		map_arr[i] = str;
+	while (str[i] && (str[i] == ' '))
 		i++;
-	}
-	return (map_arr);
+	if (!str[i] || str[i] == '\n')
+		return (1);
+	return (0);
 }
-
-char **analyze(char *str, t_map *map)
+//
+int	get_map(char *str, t_map *map)
 {
 	char	**arr;
-	char	**map_arr;
-	int i;
+	int		len;
+	int		i;
 
-	map_arr = NULL;
+	if(!str || !map)
+		return (0);
+	if(!check_map_chars(str, " 10NSEW\n"))
+        return (ft_putstr_fd("Error\nWrong simbol on map\n", 2), 0);
+	len = ft_strlen(str);
+	while(len > 0 && (str[len - 1] == ' ' || str[len - 1] == '\t' || str[len - 1] == '\n'))
+		len--;
+	if (len == 0)
+		return (ft_putstr_fd("Error\nNo map in file\n", 2), 0);
+	while(str[len] && str[len] != '\n')
+		len++;
 	i = 0;
+	while (str[i] && i < len)
+	{
+		if(str[i] == '\n')
+		{
+			i++;
+			if(i == len || !str[i] || str[i] == '\n')
+				return (ft_putstr_fd("Error\nInvalid map\n", 2), 0);
+			else if(is_empty_line(str[i]))
+				return (ft_putstr_fd("Error\nInvalid map\n", 2), 0);
+		}
+		i++;
+	}
 	arr = ft_split(str, '\n');
-	if (!arr)
-		return (ft_putstr_fd("Error: malloc\n", 2), NULL);
-	if (!get_info_from_file(arr, &i, map))
-		return (free_arr(arr), NULL);
+	if(!arr)
+		return (ft_putstr_fd("Error\nMalloc\n", 2), 0);
+	i = 0;
 	while(arr[i])
 	{
 		if(is_empty_line(arr[i]))
-			i++;
-		else
-			break;
+			free_str(&arr[i]);
+		i++;
 	}
-	if (!arr[i])
-		return (free_arr(arr), NULL);
-	map_arr = create_map(&arr[i]);
-	free_arr(arr);
-	if (!map_arr)
-		ft_putstr_fd("Error: malloc\n", 2);
-	return(map_arr);
+	map->map = arr;
+	return (1);
+}
+//
+int compare_keys(char *str, int *i, t_map *map)
+{
+	if(!ft_strcmp(str[*i], "NO") || !ft_strcmp(str[*i], "SO")
+		|| !ft_strcmp(str[*i], "WE") || !ft_strcmp(str[*i], "EA"))
+		return (get_textures(str, i, map));
+	else if(!ft_strcmp(str[*i], "F") || !ft_strcmp(str[*i], "C"))
+		return (get_colors(str, i, map));
+	else
+	{
+		ft_putstr_fd("Error\n Invalid arguments in file\n", 2);
+		return (0);
+	}
+}
+//
+int get_args(char *str, t_map *map)
+{
+	int i;
+
+	i = 0;
+	while(str[i])
+	{
+		if (is_textures_set(map))
+			break ;
+		if(str[i] == ' ' || str[i] == '\t' || str[i] == '\n')
+		{
+			i++;
+			continue ;
+		}
+		if (!compare_keys(str, &i, map))
+			return (0);
+		while(str[i] && (str[i] == ' ' || str[i] == '\t'))
+			i++;
+		if(!str[i] || str[i] != '\n')
+				return (ft_putstr_fd("Error\nInvalid arguments in file\n", 2), 0);
+		i++;
+	}
+	if(!skip_empty_lines(str, &i))
+		return (ft_putstr_fd("Error\nNo map in file\n", 2), 0);
+
+	printf("map string:\n[%s]\n", str[i]);// TODO! DELETE
+	
+	if(!get_map(str[i], map))
+		return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   m_parser.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yalnaani <yalnaani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dmitryzasenko <dmitryzasenko@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 13:38:30 by yalnaani          #+#    #+#             */
-/*   Updated: 2025/05/22 14:02:19 by yalnaani         ###   ########.fr       */
+/*   Updated: 2025/05/27 21:59:16 by dmitryzasen      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,22 @@
 #define M_PARSER_H
 
 # include "../../include/shared.h"
-# include <fcntl.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <unistd.h>
+# include <fcntl.h>// TODO: check if this is needed
+# include <stdlib.h>// TODO: check if this is needed
+# include <stdio.h>// TODO: check if this is needed
+# include <unistd.h>// TODO: check if this is needed
 
 char	*read_from_file(char *file_name);
 void	free_str(char **s);
 void	free_arr(char **arr);
-int		ft_strstr(char *str, char *to_find);
-int		t_strcmp(char *s1, char *s2);
-char	**analyze(char *str, t_map *map);
 int		arr_str_count(char **str);
-int		compare_args(char	**args, t_map *map);
 void	free_map(t_map *map);
 int		ft_strcmp(char *s1, char *s2);
 int     check_map(t_map *map);
+int     check_char(char c, char *set);
+int     get_textures(char *str, int *i, t_map *map);
+int     check_map_chars(char *str, char *set);
+int     get_args(char *str, t_map *map);
+int     len_till_sep(char *str);
 
 #endif
