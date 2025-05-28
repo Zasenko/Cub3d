@@ -84,7 +84,7 @@ char	*read_from_file(char *file_name)
 	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
 	{
-		ft_putstr_fd("Error\nCan't open the file.\n", 2);
+		ft_putstr_fd("Error\nCan't open the file\n", 2);
 		return (NULL);
 	}
 	str = read_file(fd);

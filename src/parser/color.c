@@ -99,13 +99,13 @@ int get_rgb(char *str, int *i, int c, t_map *map)
 	int f;
 
 	f = 0;
-	if (!str[*i] || !str[*i] != ' ' || str[*i] != '\t')
-		return (ft_putstr_fd("Error\n Invalid arguments in file\n", 2), 0);
+	if (!str[*i] || (str[*i] != ' ' && str[*i] != '\t'))
+		return (ft_putstr_fd("Error\nInvalid arguments in file\n", 2), 0);
 	while (str[*i] == ' ' || str[*i] == '\t')
-		*i++;
-	len = len_till_sep(str[*i]);
+		(*i)++;
+	len = len_till_sep(&str[*i]);
 	if (len == 0)
-		return (ft_putstr_fd("Error\n Invalid arguments in file\n", 2) ,0);
+		return (ft_putstr_fd("Error\nInvalid arguments in file\n", 2) ,0);
 	value = calloc(sizeof(char *), len + 1);
 	if (!value)
 		return (ft_putstr_fd("Error\nMalloc\n", 2), 0);
@@ -120,17 +120,17 @@ int get_rgb(char *str, int *i, int c, t_map *map)
 	return (free(value), 1);
 }
 
-int	get_colors(char **str, int *i, t_map *map)
+int	get_colors(char *str, int *i, t_map *map)
 {
 	int	color;
 
 	color = 0;
-	if (!ft_strncmp(str[*i], "F", 1))
+	if (!ft_strncmp(&str[*i], "F", 1))
 		color = 1;
-	else if(!ft_strncmp(str[*i], "C", 1))
+	else if(!ft_strncmp(&str[*i], "C", 1))
 		color = 2;
 	else
 		return (0);
 	*i = *i + 1;
-	return (get_rgb(str[*i], i, color, map));
+	return (get_rgb(str, i, color, map));
 }

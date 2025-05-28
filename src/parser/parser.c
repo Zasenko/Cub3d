@@ -13,14 +13,13 @@
 #include "../../include/shared.h"
 #include "m_parser.h"
 
-//
 t_map	*init_map(void)
 {
 	t_map	*map;
 
 	map = (t_map *)malloc(sizeof(t_map));
 	if (!map)
-		return (ft_putstr_fd("Error: malloc\n", 2), NULL);
+		return (ft_putstr_fd("Error\nMalloc\n", 2), NULL);
 	map->map = NULL;
 	map->textures.no_path = NULL;
 	map->textures.so_path = NULL;
@@ -33,7 +32,7 @@ t_map	*init_map(void)
     map->col_l = 0;
 	return (map);
 }
-//
+
 t_map *check_input(int argc, char **argv)
 {
 	char	*str;

@@ -23,47 +23,25 @@
 
 int	main(int argc, char **argv)
 {
-	// t_vars		*vars;
+	t_vars		*vars;
 	t_map		*map;
-	// t_player	player;
+	t_player	player;
 
 	map = check_input(argc, argv);
 	if (!map)
 	{
 		exit(EXIT_FAILURE);
 	}
-printf("TEXTURES\n");
-printf("no: [%s]\n", map->textures.no_path);
-printf("so: [%s]\n", map->textures.so_path);
-printf("ea: [%s]\n", map->textures.ea_path);
-printf("we: [%s]\n", map->textures.we_path);
-printf("COLORS\n");
-printf("f: [%d,%d,%d]\n", map->textures.f->r, map->textures.f->g, map->textures.f->b);
-printf("c: [%d,%d,%d]\n", map->textures.c->r, map->textures.c->g, map->textures.c->b);
-printf("START\n");
-printf("[%d][%d] [%d]\n", map->start.x, map->start.y, map->direction);
-	printf("MAP\n");
-	int i = 0;
-	while(map->map[i])
+	vars = new_vars();
+	if(!vars)
 	{
-		printf("[%d][%s]\n", i, map->map[i]);
-		i++;
+		free_map(map);
+		exit(1);
 	}
-
-	printf("SIZE\n");
-printf("col_l: %d\n", map->col_l);
-printf("row_l: %d\n", map->row_l);
-	free_map(map);
-	// vars = new_vars();
-	// if(!vars)
-	// {
-	// 	free_map(map);
-	// 	exit(1);
-	// }
-	// vars->player = &player;
-	// init_program(vars, map);
-	// hook_events(vars);
-	// mlx_loop_hook(vars->mlx, (void *)render_frame, vars);
-	// mlx_loop(vars->mlx);
+	vars->player = &player;
+	init_program(vars, map);
+	hook_events(vars);
+	mlx_loop_hook(vars->mlx, (void *)render_frame, vars);
+	mlx_loop(vars->mlx);
 	return (0);
 }

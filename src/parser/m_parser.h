@@ -31,5 +31,6 @@ int     get_textures(char *str, int *i, t_map *map);
 int     check_map_chars(char *str, char *set);
 int     get_args(char *str, t_map *map);
 int     len_till_sep(char *str);
+int     get_colors(char *str, int *i, t_map *map);
 
 #endif

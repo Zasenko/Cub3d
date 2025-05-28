@@ -103,7 +103,7 @@ int len_till_sep(char *str)
 	i = 0;
 	if(!str)
 		return (0);
-	while(str[i] || str[i] != ' ' && str[i] != '\t' && str[i] != '\n')
+	while(str[i] && (str[i] != ' ' && str[i] != '\t' && str[i] != '\n'))
 		i++;
 	return (i);
 }

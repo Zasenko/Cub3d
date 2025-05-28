@@ -26,7 +26,7 @@ int check_map_chars(char *str, char *set)
     }
     return (1);
 }
-/// set the dir
+
 int fill(t_map *map, int row, int col)
 {
 	if (row < 0 || col < 0
@@ -104,7 +104,7 @@ int check_walls(t_map *map)
     fill_back(map);
     return (1);
 }
-//
+
 int check_map(t_map *map)
 {
     int i;
@@ -126,6 +126,6 @@ int check_map(t_map *map)
     if (map->col_l > 300)
         return (ft_putstr_fd("Error\nMap too big\n", 2), 0);
     if(!check_walls(map))
-        return (ft_putstr_fd("Error: Incrorrect Map", 2), 0);
+        return (ft_putstr_fd("Error\nIncrorrect map\n", 2), 0);
     return (1);
 }
