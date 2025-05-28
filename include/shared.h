@@ -17,7 +17,7 @@
 # include "conf.h"
 # include "err.h"
 # include "parser.h"
-#include <stdbool.h>
+# include <stdbool.h>
 
 typedef struct s_vector2_int
 {
