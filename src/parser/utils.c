@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dzasenko <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dmitryzasenko <dmitryzasenko@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 14:42:32 by dzasenko          #+#    #+#             */
-/*   Updated: 2025/05/23 14:42:33 by dzasenko         ###   ########.fr       */
+/*   Updated: 2025/05/27 21:53:46 by dmitryzasen      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,32 @@ int	arr_str_count(char **str)
 	if (!str || !*str)
 		return (0);
 	while(str[i])
+		i++;
+	return (i);
+}
+
+int check_char(char c, char *set)
+{
+    int i;
+
+    i = 0;
+    while(set[i])
+    {
+        if (set[i] == c)
+            return (1);
+        i++;
+    }
+    return (0);
+}
+//
+int len_till_sep(char *str)
+{
+	int i;
+
+	i = 0;
+	if(!str)
+		return (0);
+	while(str[i] && (str[i] != ' ' && str[i] != '\t' && str[i] != '\n'))
 		i++;
 	return (i);
 }
