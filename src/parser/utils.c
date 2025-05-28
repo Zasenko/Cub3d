@@ -52,7 +52,7 @@ void	free_arr(char **arr)
 void	free_map(t_map *map)
 {
 	if (!map)
-		return;
+		return ;
 	if (map->map)
 		free_arr(map->map);
 	if (map->textures.no_path)
@@ -77,33 +77,7 @@ int	arr_str_count(char **str)
 	i = 0;
 	if (!str || !*str)
 		return (0);
-	while(str[i])
-		i++;
-	return (i);
-}
-
-int check_char(char c, char *set)
-{
-    int i;
-
-    i = 0;
-    while(set[i])
-    {
-        if (set[i] == c)
-            return (1);
-        i++;
-    }
-    return (0);
-}
-//
-int len_till_sep(char *str)
-{
-	int i;
-
-	i = 0;
-	if(!str)
-		return (0);
-	while(str[i] && (str[i] != ' ' && str[i] != '\t' && str[i] != '\n'))
+	while (str[i])
 		i++;
 	return (i);
 }
