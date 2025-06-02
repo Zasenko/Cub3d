@@ -6,7 +6,7 @@
 /*   By: yalnaani <yalnaani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 11:26:40 by yalnaani          #+#    #+#             */
-/*   Updated: 2025/05/28 09:34:30 by yalnaani         ###   ########.fr       */
+/*   Updated: 2025/05/28 15:26:34 by yalnaani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,9 @@
 #include "core/core.h"
 #include "datastructures/datastructures.h"
 #include "io/input.h"
-#include "logger/logger.h"
 #include "mlx.h"
 #include "parser/input_parser.h"
 #include "utils/utils.h"
-#include <math.h>
-#include <stdio.h>
 
 int	main(int argc, char **argv)
 {

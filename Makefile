@@ -6,7 +6,7 @@
 #    By: yalnaani <yalnaani@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/22 11:27:56 by yalnaani          #+#    #+#              #
-#    Updated: 2025/05/26 18:53:31 by yalnaani         ###   ########.fr        #
+#    Updated: 2025/05/28 15:26:16 by yalnaani         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 ########################            COMPILER          ##########################
 # **************************************************************************** #
 
-CC = gcc
+CC = cc
 
 # **************************************************************************** #
 ########################           Directories       ###########################
@@ -29,7 +29,6 @@ OBJ_DIR = ./build
 CORE_DIR = $(SRCS_DIR)/core
 DATA_STRUCTURES_DIR = $(SRCS_DIR)/datastructures
 IO_DIR = $(SRCS_DIR)/io
-LOGGER_DIR = $(SRCS_DIR)/logger
 PARSER_DIR = $(SRCS_DIR)/parser
 UTILS_DIR = $(SRCS_DIR)/utils
 
@@ -54,7 +53,7 @@ LIBFT_LIB=$(LIBFT)/libft.a
 MLXFLAGS = -lmlx -lXext -lm
 SRC_INCLUDE = -I$(INCL_DIR) -I$(CORE_DIR) -I$(DATA_STRUCTURES_DIR) \
 			-I$(IO_DIR) -I$(UTILS_DIR) -I$(LOGGER_DIR) -I$(PARSER_DIR)
-CFLAGS = -g -Wall -Wextra -Werror  $(SRC_INCLUDE)
+CFLAGS = -Wall -Wextra -Werror $(SRC_INCLUDE)
 #-O2 -fno-builtin
 # **************************************************************************** #
 ########################         Source Files        ###########################
@@ -67,8 +66,6 @@ CORE_SOURCES = core.c raycast.c raycast_utils.c
 VARS_DATA_SOURCES = ft_vars.c
 				
 IO_SOURCES = input_handler.c
-
-LOGGER_SOURCES = logger.c
 
 PARSER_SOURCES = parser.c analyze.c check_map.c read_file.c utils.c textures.c \
 					color.c utils2.c color_utils.c analyze_utils.c
@@ -84,7 +81,6 @@ OBJS = $(addprefix $(OBJ_DIR)/, \
 	$(addprefix core/,$(CORE_SOURCES:.c=.o))\
 	$(addprefix datastructures/vars/,$(VARS_DATA_SOURCES:.c=.o))\
 	$(addprefix io/,$(IO_SOURCES:.c=.o))\
-	$(addprefix logger/,$(LOGGER_SOURCES:.c=.o))\
 	$(addprefix parser/,$(PARSER_SOURCES:.c=.o))\
 	$(addprefix utils/,$(UTILS_SOURCES:.c=.o))\
 	)
@@ -113,7 +109,6 @@ $(OBJ_DIR)/%.o: $(SRCS_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)/datastructures
 	@mkdir -p $(OBJ_DIR)/datastructures/vars
 	@mkdir -p $(OBJ_DIR)/io
-	@mkdir -p $(OBJ_DIR)/logger
 	@mkdir -p $(OBJ_DIR)/parser
 	@mkdir -p $(OBJ_DIR)/utils
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -138,6 +133,6 @@ re: fclean all
 ########################         Phony Targets       ###########################
 # **************************************************************************** #
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re
 
 # **************************************************************************** #

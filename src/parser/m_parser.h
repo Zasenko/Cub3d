@@ -36,5 +36,7 @@ int		check_map_empty_lines(char *str, int len);
 int		check_color_args(char **ints, t_color *color);
 int		check_color_value(int arg);
 int		set_rgb_value(t_color *color, char *str, int i);
+int		len_till_nl(char *str);
+int		clean_color_rgb_args(char **ints);
 
 #endif

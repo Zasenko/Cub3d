@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dzasenko <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: yalnaani <yalnaani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 12:54:28 by dzasenko          #+#    #+#             */
-/*   Updated: 2025/05/28 12:54:49 by dzasenko         ###   ########.fr       */
+/*   Updated: 2025/05/28 15:03:02 by yalnaani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ int	set_color(t_map *map, t_color *color, int c)
 	if (c == 1)
 	{
 		if (map->textures.f)
-			return (show_err(4), 0);
+			return (0);
 		map->textures.f = color;
 	}
 	else if (c == 2)
 	{
 		if (map->textures.c)
-			return (show_err(4), 0);
+			return (0);
 		map->textures.c = color;
 	}
 	return (1);
@@ -56,12 +56,12 @@ int	init_color(char *str, int c, t_map *map)
 	char	**ints;
 	t_color	*color;
 
-	if (!str)
-		return (0);
 	ints = ft_split(str, ',');
 	if (!ints)
 		return (show_err(1), 0);
 	if (arr_str_count(ints) != 3)
+		return (free_arr(ints), show_err(7), 0);
+	if (!clean_color_rgb_args(ints))
 		return (free_arr(ints), show_err(7), 0);
 	color = (t_color *)ft_calloc(sizeof(t_color), 1);
 	if (!color)
@@ -85,17 +85,17 @@ int	get_rgb(char *str, int *i, int c, t_map *map)
 	char	*value;
 	int		f;
 
-	f = 0;
 	if (!str[*i] || (str[*i] != ' ' && str[*i] != '\t'))
 		return (show_err(4), 0);
 	while (str[*i] == ' ' || str[*i] == '\t')
 		(*i)++;
-	len = len_till_sep(&str[*i]);
+	len = len_till_nl(&str[*i]);
 	if (len == 0)
 		return (show_err(4), 0);
 	value = ft_calloc(sizeof(char *), len + 1);
 	if (!value)
 		return (show_err(1), 0);
+	f = 0;
 	while (f < len)
 	{
 		value[f] = str[*i];

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dzasenko <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: yalnaani <yalnaani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 14:23:10 by dzasenko          #+#    #+#             */
-/*   Updated: 2025/05/28 14:23:11 by dzasenko         ###   ########.fr       */
+/*   Updated: 2025/05/28 14:57:34 by yalnaani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	check_color_value(int arg)
 {
 	if (arg >= 0 && arg <= 255)
 		return (1);
-	return (0);
+	return (ft_putstr_fd("Error\nWrong color argument\n", 2), 0);
 }
 
 int	check_all_digits(char *str)
@@ -54,4 +54,22 @@ int	check_color_args(char **ints, t_color *color)
 		i++;
 	}
 	return (0);
+}
+
+int	clean_color_rgb_args(char	**ints)
+{
+	int		i;
+	char	*trimmed;
+
+	i = 0;
+	while (ints[i])
+	{
+		trimmed = ft_strtrim(ints[i], " \t");
+		if (!trimmed)
+			return (show_err(2), 0);
+		free(ints[i]);
+		ints[i] = trimmed;
+		i++;
+	}
+	return (1);
 }

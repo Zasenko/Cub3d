@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmitryzasenko <dmitryzasenko@student.42    +#+  +:+       +#+        */
+/*   By: yalnaani <yalnaani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 13:04:22 by dzasenko          #+#    #+#             */
-/*   Updated: 2025/05/28 08:00:23 by dmitryzasen      ###   ########.fr       */
+/*   Updated: 2025/05/28 14:43:07 by yalnaani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	check_file_name(char *file_name)
 	if (!file_name)
 		return (ft_putstr_fd("Error\n", 2), 0);
 	len = ft_strlen(file_name);
-	if (len < 4)
+	if (len < 5 || file_name[len - 5] == '/')
 	{
 		ft_putstr_fd("Error\nIcorrect file name (expected fileName.cub)\n", 2);
 		return (0);

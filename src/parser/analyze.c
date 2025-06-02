@@ -47,7 +47,7 @@ int	get_map(char *str, t_map *map)
 	if (!arr)
 		return (show_err(1), 0);
 	if (!check_wrong_char(arr))
-		return (free_arr(arr), show_err(6), 0);
+		return (free_arr(arr), 0);
 	map->map = arr;
 	return (1);
 }

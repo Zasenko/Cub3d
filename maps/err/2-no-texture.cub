@@ -1,0 +1,13 @@
+C 105, 199, 240
+F 20, 61, 59 
+
+WE textures/West.xpm   
+
+SO textures/South.xpm 
+          
+11111           
+1N001
+10001                
+10001
+10001
+11111

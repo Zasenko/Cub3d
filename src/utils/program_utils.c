@@ -6,15 +6,15 @@
 /*   By: yalnaani <yalnaani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 13:29:23 by yalnaani          #+#    #+#             */
-/*   Updated: 2025/05/28 11:23:26 by yalnaani         ###   ########.fr       */
+/*   Updated: 2025/05/28 14:34:25 by yalnaani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 
-void check_resolution()
+void	check_resolution(void)
 {
-	if((WIDTH < 100 || WIDTH > 1920) && (HEIGHT < 100 || HEIGHT > 1080))
+	if ((WIDTH < 100 || WIDTH > 1920) && (HEIGHT < 100 || HEIGHT > 1080))
 	{
 		ft_putstr_fd("Error:\nScreen Resolution error\n", 2);
 		exit(1);

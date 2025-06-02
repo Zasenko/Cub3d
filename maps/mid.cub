@@ -1,8 +1,8 @@
 
-NO textures/2/north.xpm
-SO textures//2/south.xpm
-WE textures/2/west.xpm
-EA textures/2/east.xpm
+NO textures/North.xpm
+SO textures/South.xpm
+WE textures/West.xpm
+EA textures/East.xpm
 
 
 F 20,61,59

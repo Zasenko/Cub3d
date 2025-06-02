@@ -39,6 +39,20 @@ int	len_till_sep(char *str)
 	return (i);
 }
 
+int	len_till_nl(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (!str)
+		return (0);
+	while (str[i] && str[i] != '\n')
+		i++;
+	if (!str[i] || str[i] != '\n')
+		return (0);
+	return (i);
+}
+
 int	check_map_chars(char *str, char *set)
 {
 	int	i;

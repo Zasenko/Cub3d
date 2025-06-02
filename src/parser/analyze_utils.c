@@ -57,7 +57,7 @@ int	check_map_empty_lines(char *str, int len)
 		{
 			i++;
 			if (i == len || !str[i] || str[i] == '\n')
-				return (show_err(3), 0);
+				return (show_err(5), 0);
 			else if (is_empty_line(&str[i]))
 				return (show_err(5), 0);
 		}

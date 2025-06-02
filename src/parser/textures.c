@@ -18,13 +18,13 @@ int	set_sn(int texture, t_map *map, char *value)
 	if (texture == 1)
 	{
 		if (map->textures.no_path != NULL)
-			return (free(value), show_err(4), 0);
+			return (0);
 		map->textures.no_path = value;
 	}
 	else if (texture == 2)
 	{
 		if (map->textures.so_path != NULL)
-			return (free(value), show_err(4), 0);
+			return (0);
 		map->textures.so_path = value;
 	}
 	return (1);
